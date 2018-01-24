@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../polymer-2-first-element/icon-toggle-finished/icon-toggle.html">
 
 <link rel="import" href="news-data.html">
 <link rel="import" href="news-nav.html">
@@ -28,7 +29,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: relative;
         min-height: 100vh;
         padding-bottom: 64px;
-
+        --icon-toggle-color: lightgrey;
+        /* --icon-toggle-outline-color: black; */
+        --icon-toggle-pressed-color: red;
         --app-border-style: 1px solid #CCC;
         --app-transparent-border-style: 1px solid rgba(255, 255, 255, 0.5);
         --app-button-border-style: 2px solid #222;
@@ -74,6 +77,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: underline;
       }
 
+iron-icon {
+      fill: var(--icon-toggle-color, rgba(0,0,0,0));
+      stroke: var(--icon-toggle-outline-color, rgba(74, 84, 176, 1));
+    }
+    :host([pressed]) iron-icon {
+      fill: var(--icon-toggle-pressed-color, rgba(74, 84, 176, 1));
+    }
+    
       /* desktop */
       @media (min-width: 768px) {
         :host {
@@ -98,6 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!--
       news-data provides the list of categories and the articles for the category.
     -->
+
     <news-data
         id="data"
         categories="{{categories}}"
@@ -146,10 +158,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </iron-pages>
 
+<icon-toggle toggle-icon="star" pressed></icon-toggle>
     <footer>
       <a href="https://www.polymer-project.org/1.0/toolbox/">Made by Polymer</a>
     </footer>
-
   </template>
 
   <script>
